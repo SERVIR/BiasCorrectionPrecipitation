@@ -1,6 +1,6 @@
-# Bias Correction of Satellite Precipitation 
-
 ![.](SERVIRGlobal.png)
+
+# Bias Correction of Satellite Precipitation 
 
 The scripts in this repository are used to bias-correct satellite-observed precipitation using [CHIRPS](http://chg.geog.ucsb.edu/data/chirps/).  These methods are derived from algorithms written in MATLAB, developed by the SWAAT research group at the University of Arizona, lead by Professor Juan Valdes (Roy et al. 2016).
 
