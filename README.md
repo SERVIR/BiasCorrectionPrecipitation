@@ -1,5 +1,7 @@
 # Bias Correction of Satellite Precipitation 
 
+![.](SERVIRGlobal.png)
+
 The scripts in this repository are used to bias-correct satellite-observed precipitation using [CHIRPS](http://chg.geog.ucsb.edu/data/chirps/).  These methods are derived from algorithms written in MATLAB, developed by the SWAAT research group at the University of Arizona, lead by Professor Juan Valdes (Roy et al. 2016).
 
 The code offers two different techniques for bias correction:
@@ -15,6 +17,9 @@ The process is divided into several scripts, as follows:
 The scripts were translated into Open Source code (in R) by Begum Rabeya Rushi, Faith Mitheu and Stella Masese.
 
 For more information on the **SERVIR** Program, click [here](https://servirglobal.net) 
+
+# Sample Data
+The file `biascorrection.zip` contains sample data for a small basin in Kenya. After unpacking the file, make sure you edit the `config.r` file to reflect the location of the data appropriately before running the scripts.
 
 # Requirements
 - Important: Edit the `config.r` file to match the locations of the files to process before running any of the scripts.
