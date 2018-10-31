@@ -33,8 +33,7 @@ for (d in 1:length(data_names)) {
     myList <- list()
     for (yyyy in start_year:end_year) {
       inputfolder <- paste(data_names[d], yyyy, "/", sep = "")
-      setwd(inputfolder)
-      files <- list.files(path = ".", pattern = paste(yyyy, ".", sprintf("%02d", mon), ".*", sep = ""))
+      files <- list.files(path = inputfolder, pattern = paste(yyyy, ".", sprintf("%02d", mon), ".*", sep = ""))
       for (file in files) {
         # directory <- paste(inputfolder, file, sep = "")
         myList[[length(myList)+1]] <- as.matrix(raster(file))
@@ -51,7 +50,6 @@ for (d in 1:length(data_names)) {
 
     assign(paste(mon, data_names[d], "monthly_mean.tif", sep = "_"), rb)
     monthly_folder <- data_names[d]
-    setwd(monthly_folder)
     monthly_tif <- paste(monthly_folder, mon, "_monthly_mean.tif", sep = "")
     writeRaster(rb, filename=monthly_tif, format="GTiff", overwrite=TRUE)
   }
@@ -69,8 +67,8 @@ for (yyyy in start_year:end_year) {
     monthly_bias_factor <- overlay(monthly_chirps_factor, monthly_spp_factor, fun=function(x,y){ x/y })
     
     inputfolder_spp <- paste(spp_dir, yyyy, "/", sep = "")
-    setwd(inputfolder_spp)
-    files_spp <- list.files(path=".", pattern = paste(yyyy, ".", sprintf("%02d", mon), ".*", sep = ""))
+    
+    files_spp <- list.files(inputfolder_spp, pattern = paste(yyyy, ".", sprintf("%02d", mon), ".*", sep = ""))
     for (file in files_spp) {
       spp_daily <- raster(paste(inputfolder_spp, file, sep = ""))
       # Calculate corrected SPP values
@@ -80,13 +78,11 @@ for (yyyy in start_year:end_year) {
       if (!file.exists(correct_folder)) {
         dir.create(correct_folder)
       }
-      setwd(correct_folder)
       corrected_file <- paste(correct_folder, file, sep = "")
-      
       crs(corrected_spp) <- CRS(crs_definition)
       writeRaster(corrected_spp, filename=corrected_file, format="GTiff", overwrite=TRUE)
     }
   }
 }
 
-print("Finished running: Linear Method SPP Bias Correction b")
+print("Finished running: Linear Method SPP Bias Correction")

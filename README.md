@@ -22,7 +22,7 @@ For more information on the **SERVIR** Program, click [here](https://servirgloba
 The file `biascorrection.zip` contains sample data for a small basin in Kenya. After unpacking the file, make sure you edit the `config.r` file to reflect the location of the data appropriately before running the scripts.
 
 # Requirements
-- Important: Edit the `config.r` file to match the locations of the files to process before running any of the scripts.
+- Important: Edit the `config.r` file to match the locations of the files to process before running any of the scripts. In order to find the `./config.r file`, you may need to set your working directory to the location of the scripts, prior to running any of them. The data directories do not need to reside under this location.
 - An R interpreter. Please install R from the [CRAN website](https://cran.r-project.org/). As an alternative, you can use [Microsoft Open R](https://mran.microsoft.com/open). R 3.3.1 or later is needed.
 - A text editor to make changes to the configuration file. An IDE supporting R is preferred, such as [RStudio](https://www.rstudio.com/).
 - R packages: Raster, sp, rgdal, abind, MASS, Pscl, EDISON, MCMCpack, invgamma.

@@ -152,6 +152,14 @@ for (mon in start_month:end_month){
       }
     }
   }
+  # Create Yearly subdirectories in output directory
+  for (yyyy in start_year:end_year) {
+	yearly_dir <- paste(corrected_spp_dir, yyyy, sep = "")
+	if (!file.exists(yearly_dir)) {
+		dir.create(yearly_dir)
+	}
+  }
+  
   for (kk in 1:sppCounter) {
     corrected_spp_daily <- as.matrix(GammaCDF_SPP[,,kk])
     rb <- raster(corrected_spp_daily)
@@ -160,14 +168,11 @@ for (mon in start_month:end_month){
     
     # replace with correct coordinates
     extent(rb) <- raster_output_extent
-    if (!file.exists(corrected_spp_dir)) {
-      dir.create(corrected_spp_dir)
-    }
-    corrected_spp_file <- paste(corrected_spp_dir, sppNames[kk], sep="")
+	
+	yyyy = substring(sppNames[kk], 1, 4)
+    corrected_spp_file <- paste(corrected_spp_dir, yyyy, "/", sppNames[kk], sep="")
     writeRaster(rb, filename = corrected_spp_file, format="GTiff", overwrite=TRUE)
   }
 }
 
-print("Finished reading data into CHIRPS and SPP arrays")  
-
-
+print("Finished Quantile Correction process")  

@@ -13,11 +13,11 @@ raster_output_extent <- c(34.75, 36.0, -0.5, 0.1)
 
 # ------------ Time Period for Analysis ------------
 start_year <- 2015
-end_year <- 2016
-start_month = 1
-end_month = 12
-start_day = 1
-end_day = 31 # Has to be consistent with end_month
+end_year <- 2015
+start_month <- 1
+end_month <- 12
+start_day <- 1
+end_day <- 31 # Has to be consistent with end_month
 
 # ----------------- Base directory -----------------
 # NOTE: - assign the full path to your base data directory
