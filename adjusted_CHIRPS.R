@@ -103,9 +103,8 @@ for (mon in start_month:end_month) {
   myList <- list()
   # For each year in the specified time period
   for (yyyy in start_year:end_year) {
-    inputfolder <- paste(comparison_dir, yyyy, sep="")
-    setwd(inputfolder)
-    file_list <- list.files(path=".", pattern=paste(yyyy,".",sprintf("%02d", mon), ".*", sep=""))
+    inputfolder <- paste(comparison_dir, yyyy, "/", sep="")
+    file_list <- list.files(path=inputfolder, pattern=paste(yyyy,".",sprintf("%02d", mon), ".*", sep=""))
     for(comparison_file in file_list) {
       myList[[length(myList)+1]] <- as.matrix(read.csv(comparison_file))
     }
@@ -125,13 +124,10 @@ for (yyyy in start_year:end_year) {
   if(!file.exists(correct_folder)) {
     dir.create(correct_folder)
   }
-  # setwd(correct_folder) NOT NEEDED
   
   inputfolder_chirps <- paste(chirps_dir, yyyy, "/",sep = "")
-  setwd(inputfolder_chirps)
-
   for (mon in start_month:end_month) {
-    chirps_files <- list.files(path=".",pattern = paste(yyyy,".",sprintf("%02d", mon),".*",sep="")) #path=inputfolder
+    chirps_files <- list.files(path=inputfolder_chirps, pattern = paste(yyyy,".",sprintf("%02d", mon),".*",sep="")) #path=inputfolder
     
     for (chirps_file in chirps_files) {
       chirps_tif_file <- paste(inputfolder_chirps, chirps_file, sep = "")
@@ -152,4 +148,4 @@ for (yyyy in start_year:end_year) {
   }
 }
   
-print("Linear Method SPP Bias Correction (Script A) finished running")
+print("Finished running Linear adjustment for CHIRPS using Rain Gauge Data")
