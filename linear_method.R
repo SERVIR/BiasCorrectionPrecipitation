@@ -36,7 +36,7 @@ for (d in 1:length(data_names)) {
       files <- list.files(path = inputfolder, pattern = paste(yyyy, ".", sprintf("%02d", mon), ".*", sep = ""))
       for (file in files) {
         # directory <- paste(inputfolder, file, sep = "")
-        myList[[length(myList)+1]] <- as.matrix(raster(file))
+        myList[[length(myList)+1]] <- as.matrix(raster(paste(inputfolder, file, sep="")))
       }
     }
     MonthlyMean <- Reduce("+", myList) / length(myList)
@@ -68,7 +68,7 @@ for (yyyy in start_year:end_year) {
     
     inputfolder_spp <- paste(spp_dir, yyyy, "/", sep = "")
     
-    files_spp <- list.files(inputfolder_spp, pattern = paste(yyyy, ".", sprintf("%02d", mon), ".*", sep = ""))
+    files_spp <- list.files(path=inputfolder_spp, pattern = paste(yyyy, ".", sprintf("%02d", mon), ".*", sep = ""))
     for (file in files_spp) {
       spp_daily <- raster(paste(inputfolder_spp, file, sep = ""))
       # Calculate corrected SPP values

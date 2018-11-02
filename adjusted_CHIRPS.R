@@ -106,7 +106,7 @@ for (mon in start_month:end_month) {
     inputfolder <- paste(comparison_dir, yyyy, "/", sep="")
     file_list <- list.files(path=inputfolder, pattern=paste(yyyy,".",sprintf("%02d", mon), ".*", sep=""))
     for(comparison_file in file_list) {
-      myList[[length(myList)+1]] <- as.matrix(read.csv(comparison_file))
+      myList[[length(myList)+1]] <- as.matrix(read.csv(paste(inputfolder,comparison_file, sep="")))
     }
   }
   m_mean_temp <- Reduce("+", myList)/length(myList)
